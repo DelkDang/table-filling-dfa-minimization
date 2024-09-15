@@ -136,7 +136,7 @@ export const minimize = (originalAutomaton) => {
   const minimizedAutomaton = {
     states: [],
     alphabet,
-    initialState: initialState,
+    initialState: null,
     acceptingStates: [],
     transitions: [],
   };
@@ -144,8 +144,8 @@ export const minimize = (originalAutomaton) => {
   const representativeMap = {};
   Object.keys(equivalentGroups).forEach((state) => {
     const group = equivalentGroups[state];
-    const representative = group[0];
-    group.forEach((s) => (representativeMap[s] = representative));
+    const representative = group.join(""); // Join all elements in the group
+    group.forEach((s) => (representativeMap[s] = representative)); // Assign concatenated representative to each state
   });
 
   console.log("representativeMap value: ", representativeMap);
